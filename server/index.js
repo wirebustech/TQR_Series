@@ -17,6 +17,8 @@ const affiliateRoutes = require('./routes/affiliates');
 const webinarRoutes = require('./routes/webinars');
 const appRoutes = require('./routes/apps');
 const supportRoutes = require('./routes/support');
+const analyticsRoutes = require('./routes/analytics');
+const searchRoutes = require('./routes/search');
 
 // Security middleware
 app.use(helmet());
@@ -61,6 +63,8 @@ app.use('/api/affiliates', affiliateRoutes);
 app.use('/api/webinars', webinarRoutes);
 app.use('/api/apps', appRoutes);
 app.use('/api/support', supportRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/search', searchRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

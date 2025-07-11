@@ -4,8 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Bars3Icon, 
   XMarkIcon,
-  ChevronDownIcon 
+  ChevronDownIcon,
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline'
+import Search from './Search'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -20,6 +22,7 @@ const navigation = [
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -63,6 +66,12 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="p-2 text-gray-700 hover:text-primary-600 transition-colors duration-200"
+            >
+              <MagnifyingGlassIcon className="w-5 h-5" />
+            </button>
             <Link
               to="/support"
               className="btn-primary text-sm"
@@ -122,6 +131,9 @@ const Header = () => {
           )}
         </AnimatePresence>
       </nav>
+
+      {/* Search Modal */}
+      <Search isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   )
 }

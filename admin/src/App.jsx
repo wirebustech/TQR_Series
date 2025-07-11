@@ -11,6 +11,7 @@ import SocialMediaManager from './pages/SocialMediaManager'
 import AffiliateManager from './pages/AffiliateManager'
 import SupportManager from './pages/SupportManager'
 import UserManager from './pages/UserManager'
+import Analytics from './pages/Analytics'
 import AdminLayout from './components/AdminLayout'
 
 const ProtectedRoute = ({ children }) => {
@@ -49,6 +50,7 @@ const AppRoutes = () => {
         <Route path="affiliates" element={<AffiliateManager />} />
         <Route path="support" element={<SupportManager />} />
         <Route path="users" element={<UserManager />} />
+        <Route path="analytics" element={<Analytics />} />
       </Route>
     </Routes>
   )
