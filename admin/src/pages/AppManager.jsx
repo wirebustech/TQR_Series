@@ -13,11 +13,19 @@ const initialForm = {
   release_date: '',
 }
 
+const initialNotification = {
+  subject: '',
+  message: '',
+}
+
 const AppManager = () => {
   const [apps, setApps] = useState([])
   const [form, setForm] = useState(initialForm)
   const [editingId, setEditingId] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [notificationModal, setNotificationModal] = useState(false)
+  const [notificationForm, setNotificationForm] = useState(initialNotification)
+  const [notifyingAppId, setNotifyingAppId] = useState(null)
 
   const fetchApps = async () => {
     setLoading(true)
@@ -85,15 +93,30 @@ const AppManager = () => {
   }
 
   const handleNotify = async id => {
+    setNotifyingAppId(id)
+    setNotificationForm(initialNotification)
+    setNotificationModal(true)
+  }
+
+  const handleNotificationSubmit = async e => {
+    e.preventDefault()
     setLoading(true)
     try {
-      await axios.post(`/api/apps/${id}/notify-early-access`)
+      await axios.post(`/api/apps/${notifyingAppId}/notify-early-access`, notificationForm)
       toast.success('Notification sent to early access users!')
+      setNotificationModal(false)
+      setNotificationForm(initialNotification)
+      setNotifyingAppId(null)
     } catch (err) {
-      toast.error('Failed to send notification')
+      toast.error(err.response?.data?.error || 'Failed to send notification')
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleNotificationChange = e => {
+    const { name, value } = e.target
+    setNotificationForm(f => ({ ...f, [name]: value }))
   }
 
   return (
@@ -143,6 +166,61 @@ const AppManager = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Notification Modal */}
+      {notificationModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h3 className="text-lg font-semibold mb-4">Notify Early Access Users</h3>
+            <form onSubmit={handleNotificationSubmit}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={notificationForm.subject}
+                  onChange={handleNotificationChange}
+                  className="input-field"
+                  placeholder="Email subject"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">Message</label>
+                <textarea
+                  name="message"
+                  value={notificationForm.message}
+                  onChange={handleNotificationChange}
+                  className="input-field"
+                  rows="4"
+                  placeholder="Email message (use {{name}} for personalization)"
+                  required
+                />
+              </div>
+              <div className="flex space-x-2">
+                <button
+                  type="submit"
+                  className="btn-primary flex-1"
+                  disabled={loading}
+                >
+                  {loading ? 'Sending...' : 'Send Notification'}
+                </button>
+                <button
+                  type="button"
+                  className="btn-secondary"
+                  onClick={() => {
+                    setNotificationModal(false)
+                    setNotificationForm(initialNotification)
+                    setNotifyingAppId(null)
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

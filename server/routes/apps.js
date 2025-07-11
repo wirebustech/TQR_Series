@@ -311,4 +311,41 @@ router.put('/signups/:id', [
   }
 });
 
+// Notify all early access users for an app (admin/editor only)
+const { sendBulkEmails } = require('../utils/email');
+
+router.post('/:id/notify-early-access', authenticateToken, async (req, res) => {
+  try {
+    if (!['admin', 'editor'].includes(req.user.role)) {
+      return res.status(403).json({ error: 'Editor access required' });
+    }
+
+    const { id } = req.params;
+    const { subject, message } = req.body;
+    if (!subject || !message) {
+      return res.status(400).json({ error: 'Subject and message are required' });
+    }
+
+    // Fetch all early access signups for this app
+    const [signups] = await pool.execute(
+      'SELECT email, name FROM early_access_signups WHERE app_id = ? AND status = "approved"',
+      [id]
+    );
+    if (signups.length === 0) {
+      return res.status(404).json({ error: 'No approved early access users found for this app' });
+    }
+
+    // Send bulk emails using the email utility
+    const results = await sendBulkEmails(signups, subject, message, 'name');
+
+    res.json({ 
+      message: `Notification sent to ${results.sent} users, failed for ${results.failed}`,
+      details: results
+    });
+  } catch (error) {
+    console.error('Notify early access error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 module.exports = router; 
