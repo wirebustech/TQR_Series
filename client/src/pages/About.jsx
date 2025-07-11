@@ -65,10 +65,13 @@ const About = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              {contentSections.about?.title || 'About TQRS'}
+              About The Qualitative Research Series (TQRS)
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              {contentSections.about?.content || 'The Quality Research Series (TQRS) is dedicated to advancing research methodologies and fostering collaboration across academic and industry sectors.'}
+            <p className="text-xl text-gray-600 leading-relaxed mb-4">
+              The Qualitative Research Series (TQRS) is a high-level qualitative research training and consultation organization. Our mission is to bridge gaps in learning and understanding, simplify the use of qualitative data, methodologies, and analysis, and empower researchers worldwide—especially in the Global South.
+            </p>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Founded by Rising Scholars and experts from diverse backgrounds, TQRS provides foundational learning spaces, free online sessions, and hands-on workshops. We support students and early- to mid-career researchers, focusing on those in the Global South who face unique research challenges. Our expert-led sessions cover designing and conducting qualitative research, managing robust data, applying methodologies, analyzing and synthesizing data, and reporting findings.
             </p>
           </motion.div>
         </div>
@@ -86,7 +89,7 @@ const About = () => {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                To empower researchers worldwide with cutting-edge tools, methodologies, and collaborative opportunities that drive innovation and advance human knowledge.
+                To make qualitative research accessible, robust, and impactful for all. We empower researchers worldwide with cutting-edge tools, methodologies, and collaborative opportunities that drive innovation and advance human knowledge.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
                 We believe that quality research is the foundation of progress, and we're committed to providing the resources and support needed to make meaningful discoveries.
@@ -101,7 +104,7 @@ const About = () => {
             >
               <h3 className="text-2xl font-bold mb-4 text-primary-600">Our Vision</h3>
               <p className="text-gray-700 leading-relaxed">
-                To be the leading platform that connects researchers, facilitates collaboration, and accelerates the pace of discovery across all fields of study.
+                To be the leading platform that connects researchers, facilitates collaboration, and accelerates the pace of discovery across all fields of study, with a special focus on supporting the Global South.
               </p>
             </motion.div>
           </div>
@@ -173,7 +176,7 @@ const About = () => {
               },
               {
                 title: 'Innovation',
-                description: 'We embrace new ideas and technologies to push the boundaries of what's possible in research.'
+                description: 'We embrace new ideas and technologies to push the boundaries of what’s possible in research.'
               },
               {
                 title: 'Collaboration',

@@ -67,26 +67,25 @@ const Home = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              {contentSections.hero?.title || 'Welcome to The Quality Research Series'}
+              The Qualitative Research Series (TQRS)
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              {contentSections.hero?.content || 'Empowering research excellence through innovative solutions and collaborative partnerships.'}
+              TQRS is a high-level qualitative research training and consultation organization. We bridge gaps in learning and understanding, simplify the use of qualitative data, methodologies, and analysis, and empower researchers worldwide—especially in the Global South. Our mission is to make qualitative research accessible, robust, and impactful for all.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/about" className="btn-primary text-lg px-8 py-3">
                 Learn More
                 <ArrowRightIcon className="w-5 h-5 ml-2 inline" />
               </Link>
-              <Link to="/webinars" className="btn-outline text-lg px-8 py-3">
-                <PlayIcon className="w-5 h-5 mr-2 inline" />
-                Watch Webinars
+              <Link to="/apps" className="btn-outline text-lg px-8 py-3">
+                Explore Our Apps
               </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* About TQRS Section */}
       <section className="section-padding bg-white">
         <div className="container-max">
           <motion.div
@@ -96,9 +95,9 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose TQRS?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">About TQRS</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide comprehensive research support and innovative tools to enhance your research capabilities.
+              Founded by Rising Scholars and experts from diverse backgrounds, TQRS provides foundational learning spaces, free online sessions, and hands-on workshops. We support students and early- to mid-career researchers, focusing on those in the Global South who face unique research challenges. Our expert-led sessions cover designing and conducting qualitative research, managing robust data, applying methodologies, analyzing and synthesizing data, and reporting findings.
             </p>
           </motion.div>
 
@@ -106,23 +105,23 @@ const Home = () => {
             {[
               {
                 icon: AcademicCapIcon,
-                title: 'Expert Methodology',
-                description: 'Access cutting-edge research methodologies and best practices from industry experts.'
+                title: 'Expert-Led Training',
+                description: 'Access foundational and advanced qualitative research training from global experts.'
               },
               {
                 icon: ChartBarIcon,
-                title: 'Data Analytics',
-                description: 'Advanced analytics tools to help you make sense of complex research data.'
+                title: 'Consultation & Support',
+                description: 'Get personalized consultation and support for your qualitative research projects.'
               },
               {
                 icon: UsersIcon,
-                title: 'Collaboration',
-                description: 'Connect with researchers worldwide and build meaningful partnerships.'
+                title: 'Global Community',
+                description: 'Join a diverse network of researchers, with a special focus on the Global South.'
               },
               {
                 icon: LightBulbIcon,
-                title: 'Innovation',
-                description: 'Stay ahead with the latest research innovations and technological advancements.'
+                title: 'Innovative Tools',
+                description: 'Benefit from cutting-edge qualitative research apps and digital resources.'
               }
             ].map((feature, index) => (
               <motion.div
@@ -155,9 +154,9 @@ const Home = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Applications</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Qualitative Research Apps by TQRS</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Discover our innovative research tools and applications designed to streamline your workflow.
+                The TQRS team is building innovative qualitative research applications to help you collect, analyze, and report qualitative data with ease. Sign up for early access and be the first to experience our new tools!
               </p>
             </motion.div>
 
@@ -225,7 +224,7 @@ const Home = () => {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest Webinars</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Stay updated with our latest educational content and research insights.
+                Stay updated with our latest educational content and research insights. Join our free online sessions, including lectures, Q&A, and interactive workshops on qualitative research topics.
               </p>
             </motion.div>
 
