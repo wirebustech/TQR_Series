@@ -1,0 +1,24 @@
+{
+  "name": "tqrs-cms",
+  "version": "1.0.0",
+  "description": "The Quality Research Series CMS - Modern Content Management System",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run admin\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "admin": "cd admin && npm run dev",
+    "build": "npm run build:client && npm run build:admin && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "build:server": "cd server && npm run build",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install && cd ../admin && npm install",
+    "start": "cd server && npm start"
+  },
+  "keywords": ["cms", "research", "quality", "content-management"],
+  "author": "TQRS Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 
