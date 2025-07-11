@@ -181,3 +181,6 @@ INSERT INTO affiliates (name, description, logo_url, website_url, sort_order) VA
 INSERT INTO apps (name, description, features, status) VALUES
 ('ResearchHub', 'Comprehensive research management platform', '["Data Collection", "Analysis Tools", "Collaboration"]', 'development'),
 ('QualityMetrics', 'Advanced quality assessment and measurement tools', '["Metrics Dashboard", "Reporting", "Analytics"]', 'beta'); 
+
+ALTER TABLE apps ADD COLUMN IF NOT EXISTS target_audience VARCHAR(255);
+ALTER TABLE apps ADD COLUMN IF NOT EXISTS release_date DATE; 

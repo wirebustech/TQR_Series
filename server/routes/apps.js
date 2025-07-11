@@ -74,12 +74,12 @@ router.post('/', [
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, description, features, status, signup_url, demo_url } = req.body;
+    const { name, description, features, status, signup_url, demo_url, target_audience, release_date } = req.body;
 
     // Create app
     const [result] = await pool.execute(
-      'INSERT INTO apps (name, description, features, status, signup_url, demo_url) VALUES (?, ?, ?, ?, ?, ?)',
-      [name, description, features ? JSON.stringify(features) : null, status || 'development', signup_url || null, demo_url || null]
+      'INSERT INTO apps (name, description, features, status, signup_url, demo_url, target_audience, release_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [name, description, features ? JSON.stringify(features) : null, status || 'development', signup_url || null, demo_url || null, target_audience || null, release_date || null]
     );
 
     res.status(201).json({
@@ -109,7 +109,7 @@ router.put('/:id', [
     }
 
     const { id } = req.params;
-    const { name, description, features, status, signup_url, demo_url, is_active } = req.body;
+    const { name, description, features, status, signup_url, demo_url, target_audience, release_date } = req.body;
 
     // Check if app exists
     const [existingApps] = await pool.execute(
@@ -123,8 +123,8 @@ router.put('/:id', [
 
     // Update app
     await pool.execute(
-      'UPDATE apps SET name = ?, description = ?, features = ?, status = ?, signup_url = ?, demo_url = ?, is_active = ? WHERE id = ?',
-      [name, description, features ? JSON.stringify(features) : null, status, signup_url || null, demo_url || null, is_active !== undefined ? is_active : true, id]
+      'UPDATE apps SET name = ?, description = ?, features = ?, status = ?, signup_url = ?, demo_url = ?, target_audience = ?, release_date = ? WHERE id = ?',
+      [name, description, features ? JSON.stringify(features) : null, status, signup_url || null, demo_url || null, target_audience || null, release_date || null, id]
     );
 
     res.json({ message: 'App updated successfully' });
